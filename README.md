@@ -35,7 +35,7 @@ Create rails app with devise and bootstrap
     rails generate devise User
     ```
 6. **Edit the devise user model**
-   - Add all the devise modules
+   - Add all the devise modules, except :omniauthable
    ```ruby
     app/models/user.rb
     ```
