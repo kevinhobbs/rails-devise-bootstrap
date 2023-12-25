@@ -8,6 +8,43 @@ Create rails app with devise and bootstrap
 - Ruby 3.2.2
 - Rails 7.1.2
 - Devise 3.9.4 via (github: 'heartcombo/devise', branch: 'main')
+- Bootstrap 5.3.2
+
+# Use template to generate new project ready to run
+
+**Clone this repository**
+
+1. **Make sure running Rails 7.1.2**
+   ```bash
+   rails -v
+   ```
+2. **Make sure running Ruby 3.2.2**
+   ```bash
+   ruby -v
+   ```
+
+3. **Create a new Rails application**
+   ```bash
+   rails new -j esbuild -c bootstrap -m rails-devise-bootstrap/template.rb new_app_name
+   ```
+
+4. **Reset things (otherwise logout doesn't work)**
+   ```bash
+   rm -rf public/assets; rake assets:clean; rake assets:precompile;
+   ```
+
+5. **Start the server**
+   ```bash
+   rails s
+   ```
+6. **Open your browser and go to mailcatcher**
+   - [localhost:1080](http://localhost:1080/)
+
+7. **Open your browser and go to your app**
+   - [localhost:3000](http://localhost:3000/)
+
+
+# Alternative: build manually from scratch
 
 ## Setup and Installation
    All steps necessary to recreate this repo using new rails app name of your choice. Resulting server is fully functional just like this repo. Repo has example commit after each step for user to see step by step changes made.
@@ -126,6 +163,9 @@ Create rails app with devise and bootstrap
     - [localhost:1080](http://localhost:1080/)
 19. **Open your browser and go to your app**
     - [localhost:3000](http://localhost:3000/)
+
+## This repo contains example code resulting from following these steps, either using the template or manually.
+
 ## Thank You
 - There you have it, a fully functional rails app with devise and bootstrap.
 - I hope this helps someone.
