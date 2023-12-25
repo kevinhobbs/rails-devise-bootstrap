@@ -123,6 +123,5 @@ Create rails app with devise and bootstrap
     - [localhost:3000](http://localhost:3000/)
 ## Thank You
 - There you have it, a fully functional rails app with devise and bootstrap.
-- As of Dec 24, 2023 I cannot find another example of this on the internet.
 - I hope this helps someone.
 - Send me a note to [email](mailto:jh1463@gmail.com)
