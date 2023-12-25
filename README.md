@@ -10,7 +10,7 @@ Create rails app with devise and bootstrap
 - Devise 3.9.4 via (github: 'heartcombo/devise', branch: 'main')
 
 ## Setup and Installation
-   All steps necessary to recreate this repo using new rails app name of your choice. Resulting server is fully functional just like this repo.
+   All steps necessary to recreate this repo using new rails app name of your choice. Resulting server is fully functional just like this repo. Repo has example commit after each step for user to see step by step changes made.
 1. **Create a new Rails application**
    ```bash
    rails new app_name -j esbuild -c bootstrap
