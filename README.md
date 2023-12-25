@@ -97,7 +97,9 @@ Create rails app with devise and bootstrap
      config.navigational_formats = ['*/*', :html, :turbo_stream]
     ```
 13. **Start your server**
+    - Running it the first way; and then other ok
     ```bash
+    rm -rf public/assets; rake assets:clean; rake assets:precompile;  bin/dev
     rails s
     ```
 14. **Configure mailcatcher**
