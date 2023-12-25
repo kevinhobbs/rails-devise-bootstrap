@@ -1,2 +1,7 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<% if user_signed_in? %>
+  <%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-primary" %>
+  <%= link_to "Logout", destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: "btn btn-danger" %>
+<% else %>
+  <%= link_to "Sign up", new_user_registration_path, class: "btn btn-success" %>
+  <%= link_to "Login", new_user_session_path, class: "btn btn-secondary" %>
+<% end %>
