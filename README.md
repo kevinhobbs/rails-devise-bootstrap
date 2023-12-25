@@ -42,22 +42,27 @@ Create rails app with devise and bootstrap
 7. **Edit the devise user migration file**
    - Uncomment all the things
    ```ruby
-     db/migrate/_devise_create_users.rb
+     db/migrate/datetimestamp_devise_create_users.rb
    ```
 8. **Create a database and run migrations**
    ```bash
-    rails db:create
-    rails db:migrate
-    ```
+   rails db:drop; rails db:create; rails db:migrate
+   ```
 9. **Create a pages controller**
     ```bash
      rails generate controller pages home
     ```
 10. **Edit the routes file**
+    - replace
+    ```ruby
+    get 'pages/home'
+    ```
+    - with this code
     ```ruby
      root 'pages#home'
     ```
 11. **Edit the development environment file**
+      - Add this code to the bottom of the file
     ```ruby
     config.action_mailer.default_url_options = {
       host: "localhost",
@@ -70,7 +75,7 @@ Create rails app with devise and bootstrap
     }
     ```
 12. **Edit views/layouts/application.html.erb**
-    - Add this code to the body, above the yield, with bootstrap classes
+    - Add this code to the body, above the yield, (includes bootstrap classes)
     ```html
     <% flash.each do |name, msg| %>
       <% if msg.is_a?(String) %>
@@ -81,7 +86,7 @@ Create rails app with devise and bootstrap
     <% end %>
     ```
 13. **Edit app/views/pages/home.html.erb**
-    - Add this code to the body, with bootstrap classes
+    - Add this code to the body, (includes bootstrap classes)
     ```html
      <% if user_signed_in? %>
        <%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-primary" %>
@@ -95,7 +100,7 @@ Create rails app with devise and bootstrap
     - Uncomment the following line
     ```ruby
      config.navigational_formats = ['*/*', :html, :turbo_stream]
-    `admin``
+    ```
 15. **Start your server**
     - Running it first this way, then other ok
     - There is some issue where devise will not use turbo and call DELETE when logging out.
