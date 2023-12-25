@@ -15,14 +15,14 @@ Create rails app with devise and bootstrap
    ```bash
    rails new app_name -j esbuild -c bootstrap
    ```
-3. **Edit your Gemfile**
-   - Make the following changes
+2. **Edit your Gemfile**
+   - Make the following changes. Devise using main branch here, could result in newer version, for now this seems to be needed.
    ```ruby
    ruby "3.2.2"
    gem "rails", "~> 7.1.2"
    gem 'devise', github: 'heartcombo/devise', branch: 'main'
    ```
-4. **Install Devise Gem**
+3. **Install Devise Gem**
    ```bash
     bundle install
     ```
@@ -39,25 +39,25 @@ Create rails app with devise and bootstrap
    ```ruby
     app/models/user.rb
     ```
-6. **Edit the devise user migration file**
+7. **Edit the devise user migration file**
    - Uncomment all the things
    ```ruby
      db/migrate/_devise_create_users.rb
    ```
-6. **Create a database and run migrations**
+8. **Create a database and run migrations**
    ```bash
     rails db:create
     rails db:migrate
     ```
-6. **Create a pages controller**
+9. **Create a pages controller**
     ```bash
      rails generate controller pages home
     ```
-7. **Edit the routes file**
+10. **Edit the routes file**
     ```ruby
      root 'pages#home'
     ```
-8. **Edit the development environment file**
+11. **Edit the development environment file**
     ```ruby
     config.action_mailer.default_url_options = {
       host: "localhost",
@@ -69,52 +69,59 @@ Create rails app with devise and bootstrap
       port: 1025
     }
     ```
-8. **Edit views/layouts/application.html.erb**
-   - Add this code to the body, above the yield, with bootstrap classes
-   ```html
-   <% flash.each do |name, msg| %>
-     <% if msg.is_a?(String) %>
-       <div class="alert <%= name == 'notice' ? 'alert-success' : 'alert-danger' %>">
-         <%= content_tag :div, msg, id: "flash_#{name}" %>
-       </div>
-     <% end %>
-   <% end %>
-   ```
-9. **Edit app/views/pages/home.html.erb**
-   - Add this code to the body, with bootstrap classes
-   ```html
-    <% if user_signed_in? %>
-      <%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-primary" %>
-      <%= link_to "Logout", destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: "btn btn-danger" %>
-    <% else %>
-      <%= link_to "Sign up", new_user_registration_path, class: "btn btn-success" %>
-      <%= link_to "Login", new_user_session_path, class: "btn btn-secondary" %>
+12. **Edit views/layouts/application.html.erb**
+    - Add this code to the body, above the yield, with bootstrap classes
+    ```html
+    <% flash.each do |name, msg| %>
+      <% if msg.is_a?(String) %>
+        <div class="alert <%= name == 'notice' ? 'alert-success' : 'alert-danger' %>">
+          <%= content_tag :div, msg, id: "flash_#{name}" %>
+        </div>
+      <% end %>
     <% end %>
-   ```
-12. **Edit initializers/devise.rb**
+    ```
+13. **Edit app/views/pages/home.html.erb**
+    - Add this code to the body, with bootstrap classes
+    ```html
+     <% if user_signed_in? %>
+       <%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-primary" %>
+       <%= link_to "Logout", destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: "btn btn-danger" %>
+     <% else %>
+       <%= link_to "Sign up", new_user_registration_path, class: "btn btn-success" %>
+       <%= link_to "Login", new_user_session_path, class: "btn btn-secondary" %>
+     <% end %>
+    ```
+14. **Edit initializers/devise.rb**
     - Uncomment the following line
     ```ruby
      config.navigational_formats = ['*/*', :html, :turbo_stream]
-    ```
-13. **Start your server**
-    - Running it the first way; and then other ok
+    `admin``
+15. **Start your server**
+    - Running it first this way, then other ok
+    - There is some issue where devise will not use turbo and call DELETE when logging out.
+    - Results in this error:
+      - No route matches [GET] "/users/sign_out"
     ```bash
     rm -rf public/assets; rake assets:clean; rake assets:precompile;  bin/dev
+    ```
+    -This should work now
+    ```bash
     rails s
     ```
-14. **Configure mailcatcher**
+16. **Configure mailcatcher**
     ```bash
     gem install mailcatcher
     ```
-14. **Start your mail server**
+17. **Start your mail server**
     ```bash
     mailcatcher
     ```
-15. **Open your browser and go to mailcatcher**
-    ```bash
-    http://localhost:1080/
-    ```
-16. **Open your browser and go to your app**
-    ```bash
-    http://localhost:3000/
-    ```
+18. **Open your browser and go to mailcatcher**
+    - [localhost:1080](http://localhost:1080/)
+19. **Open your browser and go to your app**
+    - [localhost:3000](http://localhost:3000/)
+## Thank You
+- There you have it, a fully functional rails app with devise and bootstrap.
+- As of Dec 24, 2023 I cannot find another example of this on the internet.
+- I hope this helps someone.
+- Send me a note to [email](mailto:jh1463@gmail.com)
