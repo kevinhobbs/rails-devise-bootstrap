@@ -12,7 +12,7 @@ Create rails app with devise and bootstrap
 
 # Use template to generate new project ready to run
 
-**Clone this repository**
+**Clone this repository and then follow these steps**
 
 1. **Make sure running Rails 7.1.2**
    ```bash
