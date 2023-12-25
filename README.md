@@ -101,10 +101,11 @@ Create rails app with devise and bootstrap
     - There is some issue where devise will not use turbo and call DELETE when logging out.
     - Results in this error:
       - No route matches [GET] "/users/sign_out"
+    - May need to clear browser cache of cookies also
     ```bash
     rm -rf public/assets; rake assets:clean; rake assets:precompile;  bin/dev
     ```
-    -This should work now
+    - This should work now. All functions of devise and bootstrap should work; sign up, confirm email, sign in, sign out, edit profile, forgot password, etc.
     ```bash
     rails s
     ```
